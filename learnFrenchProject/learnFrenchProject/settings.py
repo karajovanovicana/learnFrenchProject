@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'learnFrench',
     'crispy_forms',
-    'gunicorn'
+    'gunicorn',
+    'psycopg2'
 ]
 
 MIDDLEWARE = [
