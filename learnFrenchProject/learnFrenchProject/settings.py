@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'learnFrench',
-    'crispy_forms',
+    'django-crispy_forms',
     'gunicorn',
     'psycopg2'
 ]
