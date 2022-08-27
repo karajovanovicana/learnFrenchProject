@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<div class="d-flex flex-row" style="background-color: #e3ece9">
+    <div class="p-2 bd-highlight" style="font-size: 22px">Learn French</div>
+    <div class="p-2 bd-highlight"><img src="{% static 'france.png' %}" style="height: 50px; width: 100px"></div>
+</div>
+
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li style="margin-left: 0.5%; margin-top: 0.5%">
+                    <a class="nav-link active" aria-current="page" href="/home"> <img src="{% static 'home.png' %}"
+                                                                                      style="height: 25px; width: 25px"></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item m-1"
+                    style="border: 1px solid #ADD4CC;  border-radius: 2px; background-color:#e3ece9; ">
+                    <a class="nav-link active" aria-current="page" href="/profile">Profile <img
+                            src="{% static 'user-regular.svg' %}" style="height: 25px; width: 20px"></a>
+                </li>
+                <li class="nav-item m-1"
+                    style="border: 1px solid #ADD4CC;   border-radius: 2px; background-color:#e3ece9">
+                    <a class="nav-link active" aria-current="page" href="/logout">Log out</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<br>
+{% for u in user.all %}
+    <div class="justify-content-center" style="margin-left: 15%; margin-right: 65%">
+                <h2 style="margin-bottom: 20px;">Hello, {{ u.username }}</h2>
+        {#    <button type="submit" class="btn d-flex flex-column col-lg-12 ps-4 align-items-start"#}
+        {#                style="background: #ADD4CC; margin-top: 10px; border-radius: 5px;">#}
+        {#            <h3>Set daily goal</h3>#}
+        {#        </button>#}
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background: #ADD4CC;" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+{% endfor %}
+
+{% for dg in daily_goal %}
+    <div class="justify-content-center" style="margin-left: 15%; margin-right: 65%">
+        {% if dg.user_id %}
+            <h2 style="margin-bottom: 20px;">Hello, {{ dg.username }}</h2>
+            {#    <button type="submit" class="btn d-flex flex-column col-lg-12 ps-4 align-items-start"#}
+            {#                style="background: #ADD4CC; margin-top: 10px; border-radius: 5px;">#}
+            {#            <h3>Set daily goal</h3>#}
+            {#        </button>#}
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" disabled style="background: #ADD4CC;" class="btn btn-success">Submit</button>
+            </form>
+            <p>Daily goal set as: {{ dg.daily_goal_id }} lessons</p>
+
+            <p id="cdg" style="color: darksalmon;font-size: larger">User Info: {{ dg.comp_dg }}</p>
+
+            </div>
+        {% endif %}
+{% endfor %}
+<p></p>
+<footer class="bg-light text-center text-lg-start" style="position: fixed; bottom: 0; width: 100%; height: 60px;">
+    <!-- Copyright -->
+    <div class="text-center p-3 bg-light" style=" border-top: 1px solid black;">
+        © 2022 Copyright: All Rights Reserved
+    </div>
+    <!-- Copyright -->
+</footer>
+
+<script type="text/javascript">
+    var blink_speed = 1000; // every 1000 == 1 second, adjust to suit
+    var t = setInterval(function () {
+        var ele = document.getElementById('cdg');
+        ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
+    }, blink_speed);
+</script>
+</body>
+</html>
