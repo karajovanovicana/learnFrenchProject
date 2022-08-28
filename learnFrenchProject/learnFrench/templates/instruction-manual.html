@@ -32,7 +32,8 @@
                                                                                       style="height: 25px; width: 25px"></a>
                 </li>
             </ul>
-            <ul class="navbar-nav mb-2 mb-lg-0">
+           <ul class="navbar-nav mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
                 <li class="nav-item m-1"
                     style="border: 1px solid #ADD4CC;  border-radius: 2px; background-color:#e3ece9; ">
                     <a class="nav-link active" aria-current="page" href="/profile">Profile <img
@@ -42,6 +43,14 @@
                     style="border: 1px solid #ADD4CC;   border-radius: 2px; background-color:#e3ece9">
                     <a class="nav-link active" aria-current="page" href="/logout">Log out</a>
                 </li>
+                    {% else %}
+                    <li>
+                    <li class="nav-item m-1"
+                    style="border: 1px solid #ADD4CC;   border-radius: 2px; background-color:#e3ece9">
+                    <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                </li>
+                    </li>
+                {% endif %}
             </ul>
 
         </div>

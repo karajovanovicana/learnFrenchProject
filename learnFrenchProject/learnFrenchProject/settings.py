@@ -81,9 +81,13 @@ WSGI_APPLICATION = 'learnFrenchProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'daksqinfu41ame',
+       'USER': 'oocomrlthprdff',
+       'PASSWORD': '2571217fc3b16bec7e95fb20ccecc5bf71cbe93ef42ef88715303bf02f7b8a84',
+       'HOST': 'ec2-52-48-159-67.eu-west-1.compute.amazonaws.com',
+       'PORT': '5432',
+   }
 }
 
 

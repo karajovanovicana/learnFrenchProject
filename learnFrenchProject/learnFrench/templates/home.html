@@ -33,6 +33,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
                 <li class="nav-item m-1"
                     style="border: 1px solid #ADD4CC;  border-radius: 2px; background-color:#e3ece9; ">
                     <a class="nav-link active" aria-current="page" href="/profile">Profile <img
@@ -42,12 +43,21 @@
                     style="border: 1px solid #ADD4CC;   border-radius: 2px; background-color:#e3ece9">
                     <a class="nav-link active" aria-current="page" href="/logout">Log out</a>
                 </li>
+                    {% else %}
+                    <li>
+                    <li class="nav-item m-1"
+                    style="border: 1px solid #ADD4CC;   border-radius: 2px; background-color:#e3ece9">
+                    <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                </li>
+                    </li>
+                {% endif %}
             </ul>
 
         </div>
     </div>
 </nav>
 <div class="justify-content-center" style="margin-left: 15%; margin-right: 15%">
+<h1>Welcome to LearnFrenchApp</h1>
     <br>
     <h2>Units</h2>
 <form>
@@ -56,6 +66,7 @@
             manual</a>
     </button>
 </form>
+  {% if user.is_authenticated %}
     {% for unit in units %}
         {#            <div class="d-flex flex-column col-lg-12 ps-4 align-items-start">#}
         <form action="/unit{{ unit.pk }}">
@@ -66,6 +77,7 @@
         </form>
         {#            </div>#}
     {% endfor %}
+{% endif %}
 </div>
 <footer class="bg-light text-center text-lg-start" style="position: fixed; bottom: 0; width: 100%; height: 60px;">
     <!-- Copyright -->
