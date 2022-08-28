@@ -82,5 +82,5 @@ class UserTestView(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'learnFrenchApp_usertest_view'
+        db_table = 'learnfrenchapp_usertest_view'
 
