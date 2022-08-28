@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-t#_1w0w=k^jx*dn25l)u8a1cky2q!l+m3us))x9m1ed%$8lf-7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['learn-french-project.herokuapp.com']
+ALLOWED_HOSTS = ['learn-french-project.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -121,7 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
