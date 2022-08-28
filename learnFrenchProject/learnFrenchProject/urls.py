@@ -13,15 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
+import learnFrench
 from learnFrench.views import home, instruction_manual, register_request, login_request, logout_request, unit1, unit2, \
     lesson1, lesson2, profile, test1, test2
+from learnFrenchProject import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-path('home/', home, name="home"),
+    path('home/', home, name="home"),
     path('instruction-manual/', instruction_manual, name="instruction_manual"),
     path("register/", register_request, name="register"),
     path("login/", login_request, name="login"),
@@ -33,4 +36,4 @@ path('home/', home, name="home"),
     path("profile/", profile, name="profile"),
     path("test1/", test1, name="usertest"),
     path("test2/", test2, name="usertest")
-]
+    ] + static(settings.STATIC_URL)
