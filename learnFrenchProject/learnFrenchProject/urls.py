@@ -35,5 +35,5 @@ urlpatterns = [
     path("lesson2/", lesson2, name="lesson2"),
     path("profile/", profile, name="profile"),
     path("test1/", test1, name="usertest"),
-    path("test2/", test2, name="usertest")
-    ] + static(settings.STATIC_URL)
+    path("test2/", test2, name="usertest"),
+    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
