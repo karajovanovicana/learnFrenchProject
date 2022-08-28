@@ -8,6 +8,7 @@ django = "4.1"
 django-crispy-forms = "*"
 django-multiselectfield = "*"
 gunicorn = "*"
+psycopg2="*"
 
 [dev-packages]
 
