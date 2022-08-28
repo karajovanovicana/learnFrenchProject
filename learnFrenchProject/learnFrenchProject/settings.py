@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'learnFrench',
     'crispy_forms',
     'gunicorn',
-    'psycopg2'
+    'psycopg2',
+    'mnist'
 ]
 
 MIDDLEWARE = [
