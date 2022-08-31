@@ -126,7 +126,7 @@ def test3(request):
             user_test.user = request.user
             user_test.date = datetime.now()
             user_test.completed = 1
-            user_test.user_test_id = 2
+            user_test.user_test_id = 3
             user_test.save()
             return redirect("home")
     return render(request, "usertest.html", context=context)
@@ -142,7 +142,7 @@ def test4(request):
             user_test.user = request.user
             user_test.date = datetime.now()
             user_test.completed = 1
-            user_test.user_test_id = 2
+            user_test.user_test_id = 4
             user_test.save()
             return redirect("home")
     return render(request, "usertest.html", context=context)
@@ -158,7 +158,7 @@ def test5(request):
             user_test.user = request.user
             user_test.date = datetime.now()
             user_test.completed = 1
-            user_test.user_test_id = 2
+            user_test.user_test_id = 5
             user_test.save()
             return redirect("home")
     return render(request, "usertest.html", context=context)
