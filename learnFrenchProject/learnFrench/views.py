@@ -1,6 +1,5 @@
 from datetime import datetime
 
-from django.shortcuts import render
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
@@ -9,10 +8,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 # Create your views here.
-from learnFrench.forms import DailyGoalForm, UserTestForm, UserTestViewForm
-from learnFrench.models import Unit, Lesson, DailyGoal, UserTest, Test, UserTestView
-
-
+from learnFrench.forms import DailyGoalForm, UserTestForm
+from learnFrench.models import Unit, Lesson, Test, UserTestView
 
 
 def home(request):
@@ -32,9 +29,37 @@ def unit2(request):
     context = {"units": queryset}
     return render(request, "unit.html", context=context)
 
+def unit3(request):
+    queryset = Unit.objects.all()[2:3]
+    context = {"units": queryset}
+    return render(request, "unit.html", context=context)
+
 
 def lesson1(request):
     queryset = Lesson.objects.all()[:1]
+    context = {"lessons": queryset}
+    return render(request, "lesson.html", context=context)
+
+
+def lesson2(request):
+    queryset = Lesson.objects.all()[1:2]
+    context = {"lessons": queryset}
+    return render(request, "lesson.html", context=context)
+
+
+def lesson3(request):
+    queryset = Lesson.objects.all()[2:3]
+    context = {"lessons": queryset}
+    return render(request, "lesson.html", context=context)
+
+
+def lesson4(request):
+    queryset = Lesson.objects.all()[3:4]
+    context = {"lessons": queryset}
+    return render(request, "lesson.html", context=context)
+
+def lesson5(request):
+    queryset = Lesson.objects.all()[4:5]
     context = {"lessons": queryset}
     return render(request, "lesson.html", context=context)
 
@@ -48,17 +73,10 @@ def profile(request):
             daily_goal.date = datetime.now()
             daily_goal.save()
             return redirect("profile")
-    # else:
-    #     form = UserTestViewForm(user_id=request.user, date=datetime.now())
     queryset = User.objects.filter(username=request.user).all()
-    queryset1 = DailyGoal.objects.filter(user=request.user).filter(date=datetime.now()).all()
     queryset2 = UserTestView.objects.filter(username=request.user.username).filter(date=datetime.now()).distinct().all()
-    # result_list = list(
-    #    chain(queryset2, queryset1),
-    #    # key=attrgetter('user_id', 'date'), reverse=True
-    # )
+
     context = {"user": queryset, "form": DailyGoalForm}
-    context1 = {"daily_goal": queryset1, "form": DailyGoalForm}
     context2 = {"daily_goal": queryset2, "form": DailyGoalForm}
     if queryset2.count() > 0:
         return render(request, "profile.html", context=context2)
@@ -82,19 +100,6 @@ def test1(request):
     return render(request, "usertest.html", context=context)
 
 
-# def test1_new(request):
-#     if request.method == "POST":
-#         form_data = UserTestForm(data=request.POST)
-#         if form_data.is_valid():
-#             user_test = form_data.save(commit=False)
-#             user_test.user = request.user
-#             user_test.date = datetime.now()
-#             user_test.completed = 1
-#             user_test.save()
-#             return redirect("home")
-#     return render(request, "test.html")
-
-
 def test2(request):
     queryset = Test.objects.filter().all()[1:2]
     context = {"tests": queryset}
@@ -111,11 +116,52 @@ def test2(request):
     return render(request, "usertest.html", context=context)
 
 
-def lesson2(request):
-    queryset = Lesson.objects.all()[1:2]
-    context = {"lessons": queryset}
-    return render(request, "lesson.html", context=context)
+def test3(request):
+    queryset = Test.objects.filter().all()[2:3]
+    context = {"tests": queryset}
+    if request.method == "POST":
+        form_data = UserTestForm(data=request.POST)
+        if form_data.is_valid():
+            user_test = form_data.save(commit=False)
+            user_test.user = request.user
+            user_test.date = datetime.now()
+            user_test.completed = 1
+            user_test.user_test_id = 2
+            user_test.save()
+            return redirect("home")
+    return render(request, "usertest.html", context=context)
 
+
+def test4(request):
+    queryset = Test.objects.filter().all()[3:4]
+    context = {"tests": queryset}
+    if request.method == "POST":
+        form_data = UserTestForm(data=request.POST)
+        if form_data.is_valid():
+            user_test = form_data.save(commit=False)
+            user_test.user = request.user
+            user_test.date = datetime.now()
+            user_test.completed = 1
+            user_test.user_test_id = 2
+            user_test.save()
+            return redirect("home")
+    return render(request, "usertest.html", context=context)
+
+
+def test5(request):
+    queryset = Test.objects.filter().all()[4:5]
+    context = {"tests": queryset}
+    if request.method == "POST":
+        form_data = UserTestForm(data=request.POST)
+        if form_data.is_valid():
+            user_test = form_data.save(commit=False)
+            user_test.user = request.user
+            user_test.date = datetime.now()
+            user_test.completed = 1
+            user_test.user_test_id = 2
+            user_test.save()
+            return redirect("home")
+    return render(request, "usertest.html", context=context)
 
 def instruction_manual(request):
     return render(request, "instruction-manual.html")

@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
             crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'styles.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -34,22 +35,27 @@
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
-                <li class="nav-item m-1"
-                    style="border: 1px solid #ADD4CC;  border-radius: 2px; background-color:#e3ece9; ">
-                    <a class="nav-link active" aria-current="page" href="/profile">Profile <img
-                            src="{% static 'user-regular.svg' %}" style="height: 25px; width: 20px"></a>
-                </li>
-                <li class="nav-item m-1"
-                    style="border: 1px solid #ADD4CC;   border-radius: 2px; background-color:#e3ece9">
-                    <a class="nav-link active" aria-current="page" href="/logout">Log out</a>
-                </li>
-                    {% else %}
-                    <li>
                     <li class="nav-item m-1"
-                    style="border: 1px solid #ADD4CC;   border-radius: 2px; background-color:#e3ece9">
-                    <a class="nav-link active" aria-current="page" href="/login">Login</a>
-                </li>
+                        style="border: 1px solid #ADD4CC;  border-radius: 2px; background-color:#e3ece9; ">
+                        <a class="nav-link active" aria-current="page" href="/profile">Profile <img
+                                src="{% static 'user-regular.svg' %}" style="height: 25px; width: 20px"></a>
                     </li>
+                    </ul>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item m-1"
+                            style="border: 1px solid #ADD4CC;  border-radius: 2px; background-color:#e3ece9">
+                            <a class="nav-link active" aria-current="page" href="/logout"
+                               style="text-align: center;height: 43px;width: 85px">Log out</a>
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item m-1"
+                            style="border: 1px solid #ADD4CC;border-radius: 2px; background-color:#e3ece9;">
+                            <a class="nav-link active" aria-current="page" href="/login"
+                               style="text-align: center;height: 43px;width: 85px">Log in</a>
+                        </li>
+                    </ul>
                 {% endif %}
             </ul>
 
@@ -57,34 +63,35 @@
     </div>
 </nav>
 <div class="justify-content-center" style="margin-left: 15%; margin-right: 15%">
-<h1>Welcome to LearnFrenchApp</h1>
+    <h1>Welcome to LearnFrenchApp!</h1>
     <br>
-    <h2>Units</h2>
-<form>
-    <button type="button" class="btn btn-success" style="background: #ADD4CC; margin-bottom: 15px; margin-top: 10px">
-        <a href='/instruction-manual' style="text-decoration: none; color: white" alt='Broken Link'>Instruction
-            manual</a>
-    </button>
-</form>
-  {% if user.is_authenticated %}
-    {% for unit in units %}
-        {#            <div class="d-flex flex-column col-lg-12 ps-4 align-items-start">#}
-        <form action="/unit{{ unit.pk }}">
-        <button type="submit" class="btn d-flex flex-column col-lg-12 ps-4 align-items-start"
-                style="background: #ADD4CC; margin-top: 10px; border-radius: 5px;">
-            <h3>{{ unit.title }}</h3>
+    {% if user.is_authenticated %}
+        <h2>Units</h2>
+    {% else %}
+        <h2><a href="/register" style="color: darkgreen">Create an account to get started</a></h2>
+    {% endif %}
+    <form action="/instruction-manual">
+        <button type="submit" class="btn btn-outline-success"
+                style="background: #ADD4CC; margin-bottom: 15px; margin-top: 10px">
+            <span style="text-decoration: none;">Instruction
+                manual</span>
         </button>
-        </form>
-        {#            </div>#}
-    {% endfor %}
-{% endif %}
+    </form>
+    {% if user.is_authenticated %}
+        {% for unit in units %}
+            <form action="/unit{{ unit.pk }}">
+                <button type="submit" class="btn d-flex flex-column col-lg-12 ps-4 align-items-start"
+                        style="background: #ADD4CC; margin-top: 10px; border-radius: 5px;">
+                    <h3>{{ unit.title }}</h3>
+                </button>
+            </form>
+        {% endfor %}
+    {% endif %}
 </div>
 <footer class="bg-light text-center text-lg-start" style="position: fixed; bottom: 0; width: 100%; height: 60px;">
-    <!-- Copyright -->
-    <div class="text-center p-3 bg-light" style=" border-top: 1px solid black;">
+    <div class="text-center p-3 bg-light" style="border-top: 1px solid black;">
         © 2022 Copyright: All Rights Reserved
     </div>
-    <!-- Copyright -->
 </footer>
 </body>
 </html>

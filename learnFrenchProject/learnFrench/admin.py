@@ -65,7 +65,6 @@ admin.site.register(Goal, GoalAdmin)
 
 
 class DailyGoalAdmin(admin.ModelAdmin):
-    #list_display = ("users", "goals")
 
     def has_add_permission(self, request):
         return True

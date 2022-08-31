@@ -54,7 +54,6 @@ class Goal(models.Model):
 
 class DailyGoal(models.Model):
     daily_goal = models.ForeignKey(Goal, on_delete=models.CASCADE, null=True, blank=True)
-    # lessons = models.ManyToManyField(Lesson, related_name='lessons_profile')
     date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
@@ -67,9 +66,6 @@ class UserTest(models.Model):
     date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     completed = models.FloatField()
-
-    # class Meta:
-    #     unique_together = ("user", "date", "completed", "user_test")
 
 
 class UserTestView(models.Model):

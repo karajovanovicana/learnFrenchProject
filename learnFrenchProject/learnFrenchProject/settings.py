@@ -81,13 +81,14 @@ WSGI_APPLICATION = 'learnFrenchProject.wsgi.application'
 
 DATABASES = {
     'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'daksqinfu41ame',
-       'USER': 'oocomrlthprdff',
-       'PASSWORD': '2571217fc3b16bec7e95fb20ccecc5bf71cbe93ef42ef88715303bf02f7b8a84',
-       'HOST': 'ec2-52-48-159-67.eu-west-1.compute.amazonaws.com',
-       'PORT': '5432',
-   }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd38lm4d1cmj0lf',
+        'USER': 'lmiwxkodbcuavw',
+        'PASSWORD': '00052906c77f2486bbbae0e71a4b789a3bcf0cf5500f1a597362d2597579a480',
+        'HOST': 'ec2-52-211-182-159.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432'
+    }
+
 }
 
 
